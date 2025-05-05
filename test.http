@@ -1,0 +1,139 @@
+### вывести все книги
+GET /api/book/getall HTTP/1.1
+Host: localhost:3000
+
+### Создать новую книгу
+GET /api/book/create HTTP/1.1
+Host: localhost:3000
+
+### Обновить книгу
+GET /api/book/update/12345 HTTP/1.1
+Host: localhost:3000
+
+### Удалить книгу
+GET /api/book/delete/12345 HTTP/1.1
+Host: localhost:3000
+
+
+
+
+
+
+### Список всех жанров
+GET  /api/genre/getall HTTP/1.1
+Host: localhost:3000
+
+### Создать новый жанр
+POST /api/genre/create HTTP/1.1
+Host: localhost:3000
+Content-type: application/json; charset=utf-8
+
+{
+    "name": "fff"
+}
+
+### Обновить жанр
+PUT /api/genre/update/1 HTTP/1.1
+Host: localhost:3000
+Content-type: application/json; charset=utf-8
+
+{
+    "name": "Fantasy"
+}
+
+### Получить один жанр
+GET /api/genre/getone/3 HTTP/1.1
+Host: localhost:3000
+
+### Удалить жанр
+DELETE /api/genre/delete/3 HTTP/1.1
+Host: localhost:3000
+
+
+
+### Список всех авторов
+GET  /api/author/getall HTTP/1.1
+Host: localhost:3000
+
+### Создать нового автора
+POST /api/author/create HTTP/1.1
+Host: localhost:3000
+Content-Type: multipart/form-data; boundary=MultiPartFormDateBoundary
+
+--MultiPartFormDateBoundary
+Content-Disposition: form-data; name="firstname"
+Content-Type: text/plain; charset=utf-8
+
+Пушкин
+--MultiPartFormDateBoundary
+Content-Disposition: form-data; name="lastname"
+Content-Type: text/plain; charset=utf-8
+
+Александр
+--MultiPartFormDateBoundary
+Content-Disposition: form-data; name="patronymic"
+Content-Type: text/plain; charset=utf-8
+
+Сергеевич
+--MultiPartFormDateBoundary
+Content-Disposition: form-data; name="foto"; filename="img.jpeg"
+Content-Type: text/plain; charset=utf-8
+
+< ./img.jpeg
+--MultiPartFormDateBoundary--
+
+
+### Обновить автора
+PUT /api/author/update/1 HTTP/1.1
+Host: localhost:3000
+Content-type: application/json; charset=utf-8
+
+{
+    "name": "Fantasy"
+}
+
+### Получить автора
+GET /api/author/getone/1 HTTP/1.1
+Host: localhost:3000
+
+### Удалить автора
+DELETE /api/author/delete/1 HTTP/1.1
+Host: localhost:3000
+
+###
+POST /api/user/signup HTTP/1.1
+Host: localhost:3000
+Content-Type: multipart/form-data; boundary=MultiPartFormDataBoundary
+
+--MultiPartFormDataBoundary
+Content-Disposition: form-data; name="firstname"
+Content-Type: text/plain; charset=utf-8
+
+Иванов
+--MultiPartFormDataBoundary
+Content-Disposition: form-data; name="lastname"
+Content-Type: text/plain; charset=utf-8
+
+Иван
+--MultiPartFormDataBoundary
+Content-Disposition: form-data; name="patronymic"
+Content-Type: text/plain; charset=utf-8
+
+Иванович
+--MultiPartFormDataBoundary
+Content-Disposition: form-data; name="photo"; filename="PN.jpg"
+Content-Type: image/jpeg
+
+< ./img.jpeg
+
+--MultiPartFormDataBoundary--
+
+###
+GET /api/user/getall HTTP/1.1
+Authorization: Bearer eyASDJlas
+Host: localhost:3000
+
+
+
+
+

@@ -1,0 +1,6 @@
+SELECT last_value FROM users_id_seq; pervoe
+
+ALTER SEQUENCE users_id_seq RESTART WITH max_id + 1; vtoroe  
+ili tak
+
+ALTER SEQUENCE users_id_seq RESTART WITH 5; ili tak

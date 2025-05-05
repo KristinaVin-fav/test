@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /search/
+Disallow: /*?sort=
+Allow: /assets/
+Host: betta-bank.ru
+Sitemap: https://betta-bank.ru/sitemap.xml
