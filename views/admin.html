@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ панель | Betta-Bank</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Навигационная панель -->
+        <nav class="admin-navbar">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1 class="admin-title">Админ панель</h1>
+            <div class="admin-controls">
+                <button class="btn btn-refresh" id="refresh-data">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <div class="badge badge-pill badge-info" id="requests-count">0</div>
+            </div>
+        </nav>
+
+        <!-- Фильтры и поиск -->
+        <div class="filters-container">
+            <div class="filter-group">
+                <select class="form-control" id="status-filter">
+                    <option value="all">Все статусы</option>
+                    <option value="в работе">В работе</option>
+                    <option value="выполнено">Выполнено</option>
+                    <option value="отменено">Отменено</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <input type="date" class="form-control" id="date-filter">
+            </div>
+            <div class="filter-group search-group">
+                <input type="text" class="form-control" placeholder="Поиск...">
+                <button class="btn btn-search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Основная таблица -->
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th data-sort="id">ID <i class="fas fa-sort"></i></th>
+                        <th data-sort="date">Дата <i class="fas fa-sort"></i></th>
+                        <th>Адрес</th>
+                        <th>Время</th>
+                        <th>Услуга</th>
+                        <th data-sort="amount">Сумма <i class="fas fa-sort"></i></th>
+                        <th>Статус</th>
+                        <th>Тип оплаты</th>
+                        <th>Пожелания</th>
+                        <th>User ID</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-requests-table-body">
+                    <!-- Данные будут загружены через JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Модальное окно редактирования -->
+        <div class="modal fade" id="editRequestModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Редактирование заявки #<span id="modal-id"></span></h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editRequestForm">
+                            <div class="form-group">
+                                <label>Статус</label>
+                                <select class="form-control" id="edit-status" required>
+                                    <option value="в работе">В работе</option>
+                                    <option value="выполнено">Выполнено</option>
+                                    <option value="отменено">Отменено</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Причина отмены</label>
+                                <textarea class="form-control" id="edit-reason" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Комментарий</label>
+                                <input type="text" class="form-control" id="edit-comment">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="button" class="btn btn-primary" id="save-changes">Сохранить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

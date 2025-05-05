@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Betta Bank - Кредитные решения для любых целей. Потребительские кредиты, ипотека, автокредитование">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <title>Betta Bank - Кредиты</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="https://www.finam.ru/Images/u/newsonline/scheduledNews/202012/80.jpg" as="image">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">Betta Bank</h1>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="vclad.html" class="nav-link">Вклады</a></li>
+                    <li><a href="credit_info.html" class="nav-link active">Кредиты</a></li>
+                    <li><a href="credit_card.html" class="nav-link">Карты</a></li>
+                    <li><a href="invest.html" class="nav-link">Инвестиции</a></li>
+                </ul>
+            </nav>
+
+            <div class="auth-buttons">
+                <button class="auth-btn" onclick="window.location.href='/auth.html#login'">Войти</button>
+                <button class="auth-btn primary" onclick="window.location.href='/auth.html#register'">Регистрация</button>
+                <button class="auth-btn admin" onclick="window.location.href='/admin-login.html#register'">Админ-панель</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Секция основных кредитных продуктов -->
+        <section class="featured-section">
+            <h2 class="section-title">Кредитные продукты</h2>
+            <div class="product-container">
+                <article class="product-card">
+                    <i class="bi bi-house-door-fill product-icon"></i>
+                    <h3>Ипотека от 5.9%</h3>
+                    <ul class="product-features">
+                        <li>Срок до 30 лет</li>
+                        <li>Первоначальный взнос от 10%</li>
+                        <li>Сумма до 50 млн рублей</li>
+                    </ul>
+                    <button class="auth-btn primary">Оформить заявку</button>
+                </article>
+
+                <article class="product-card">
+                    <i class="bi bi-car-front-fill product-icon"></i>
+                    <h3>Автокредит 7.9%</h3>
+                    <ul class="product-features">
+                        <li>Без первоначального взноса</li>
+                        <li>Страхование в подарок</li>
+                        <li>Одобрение за 1 час</li>
+                    </ul>
+                    <button class="auth-btn primary">Рассчитать кредит</button>
+                </article>
+
+                <article class="product-card">
+                    <i class="bi bi-cash-coin product-icon"></i>
+                    <h3>Потребительский кредит</h3>
+                    <ul class="product-features">
+                        <li>Ставка от 8.5%</li>
+                        <li>Сумма до 5 млн рублей</li>
+                        <li>Решение онлайн за 5 минут</li>
+                    </ul>
+                    <button class="auth-btn primary">Подробнее</button>
+                </article>
+            </div>
+        </section>
+
+        <!-- Кредитный калькулятор -->
+        <section class="calculator-section">
+            <h2 class="section-title">Кредитный калькулятор</h2>
+            <div class="calculator-container">
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label>Сумма кредита:</label>
+                        <input type="range" id="amount" min="100000" max="5000000" step="10000" value="1000000">
+                        <span id="amountValue">1 000 000 ₽</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Срок кредита:</label>
+                        <input type="range" id="term" min="1" max="30" value="5">
+                        <span id="termValue">5 лет</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Процентная ставка:</label>
+                        <input type="number" id="rate" min="5" max="30" value="10" step="0.1">
+                        <span>% годовых</span>
+                    </div>
+                </div>
+                
+                <div class="calculator-results">
+                    <div class="result-card">
+                        <h4>Ежемесячный платеж</h4>
+                        <div class="result-value" id="monthlyPayment">12 345 ₽</div>
+                    </div>
+                    <div class="result-card">
+                        <h4>Общая сумма</h4>
+                        <div class="result-value" id="totalAmount">740 700 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Преимущества -->
+        <section class="advantages-section">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <i class="bi bi-clock-fill"></i>
+                    <h3>Быстрое решение</h3>
+                    <p>Онлайн-заявка и мгновенное предварительное решение</p>
+                </div>
+                <div class="advantage-card">
+                    <i class="bi bi-percent"></i>
+                    <h3>Выгодные ставки</h3>
+                    <p>Специальные условия для постоянных клиентов</p>
+                </div>
+                <div class="advantage-card">
+                    <i class="bi bi-shield-fill-check"></i>
+                    <h3>Надежно и безопасно</h3>
+                    <p>Все операции защищены банковской гарантией</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Чат -->
+        <div class="chat-container">
+            <button class="chat-toggle">
+                <i class="bi bi-chat-dots-fill"></i>
+            </button>
+            
+            <div class="chat-window">
+                <div class="chat-header">
+                    <h4>Кредитный специалист</h4>
+                    <button class="close-chat">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+                <div class="chat-messages"></div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Введите ваш вопрос...">
+                    <button class="send-btn">
+                        <i class="bi bi-send-fill"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Betta Bank | Developed by Kristina Vin</p>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+        // Код для калькулятора
+        const calculateLoan = () => {
+            const amount = parseInt(document.getElementById('amount').value);
+            const term = parseInt(document.getElementById('term').value) * 12;
+            const rate = parseFloat(document.getElementById('rate').value) / 100 / 12;
+
+            const monthlyPayment = (amount * rate * Math.pow(1 + rate, term)) / 
+                                (Math.pow(1 + rate, term) - 1);
+            
+            document.getElementById('monthlyPayment').textContent = 
+                `${monthlyPayment.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`;
+            
+            document.getElementById('totalAmount').textContent = 
+                `${(monthlyPayment * term).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`;
+        }
+
+        // Обработчики событий
+        document.getElementById('amount').addEventListener('input', function() {
+            document.getElementById('amountValue').textContent = 
+                `${parseInt(this.value).toLocaleString()} ₽`;
+            calculateLoan();
+        });
+
+        document.getElementById('term').addEventListener('input', function() {
+            document.getElementById('termValue').textContent = 
+                `${this.value} ${this.value == 1 ? 'год' : 'лет'}`;
+            calculateLoan();
+        });
+
+        document.getElementById('rate').addEventListener('input', calculateLoan);
+        
+        // Первоначальный расчет
+        calculateLoan();
+    </script>
+</body>
+</html>

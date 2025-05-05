@@ -1,0 +1,158 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #43b3dfe0;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav li {
+    display: inline-block;
+    margin: 5px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    background-color: #222;
+    padding: 8px 12px;
+    border: 2px solid black;
+    border-radius: 5px;
+    min-width: 300px; /* Устанавливаем минимальную ширину */
+    text-align: center; /* Центрируем текст внутри кнопки */
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #353535;
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product {
+    width: 200px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+}
+
+.product h3 {
+    margin-top: 10px;
+}
+
+.category-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.category {
+    width: 150px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.category img {
+    width: 100%;
+    height: auto;
+}
+
+.auth-buttons ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.auth-buttons li {
+    display: inline-block;
+    margin: 5px;
+}
+
+.auth-buttons button {
+    background-color: #333;
+    color: #fff;
+    padding: 8px 12px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 90px; /* Устанавливаем минимальную ширину */
+    text-align: center; /* Центрируем текст внутри кнопки */
+}
+
+.auth-buttons button:hover {
+    background-color: #222;
+}
+
+h1 {
+    color: black;
+}
+
+p {
+    color: white;
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    nav li {
+        display: block;
+        margin: 23px;
+        min-width: 90px; /* Устанавливаем минимальную ширину */
+    }
+
+    .auth-buttons li {
+        display: block;
+        margin: 5px;
+        min-width: 90px; /* Устанавливаем минимальную ширину */
+    }
+}

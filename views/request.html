@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Он-лайн заявка на банковские услуги для юридических лиц Betta-Bank">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Стили для навигации */
+        .nav-custom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .btn-back {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-back:hover {
+            background: #e9ecef;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        .btn-requests {
+            background: #007bff;
+            color: white !important;
+            border-radius: 8px;
+            padding: 0.5rem 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-requests:hover {
+            background: #0069d9;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* Стили для выбора времени */
+        .time-picker {
+            position: relative;
+        }
+
+        .time-picker::after {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* Стили для селектов */
+
+
+        /* Общие улучшения */
+        .form-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        #total-amount {
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: inline-block;
+        }
+    </style>
+    <title>Создание заявки | Betta-Bank для бизнеса</title>
+</head>
+<body>
+    <main class="container py-4">
+        <nav aria-label="Навигация" class="nav-custom">
+            <a href="/" class="btn-back text-dark">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Назад
+            </a>
+            <a href="/user-requests" class="btn-requests">
+                <i class="fas fa-list-ol mr-2"></i>
+                Мои заявки
+            </a>
+        </nav>
+
+        <h1 class="h2 mb-4">Создание заявки на услугу</h1>
+        
+        <form method="POST" action="/request/create" id="request-form" class="form-section">
+            <!-- Поле адреса -->
+            <div class="form-group">
+                <label for="address" class="font-weight-bold">Адрес объекта</label>
+                <input type="text" class="form-control form-control-lg" name="address" id="address" 
+                       placeholder="ул. Примерная, д. 1" required>
+            </div>
+
+            <!-- Дата и время -->
+            <fieldset class="border p-3 mb-4 rounded">
+                <legend class="w-auto font-weight-bold px-3">Дата и время</legend>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="date">Дата визита</label>
+                        <input type="date" class="form-control" name="date" id="date" 
+                               min="2025-04-07" max="2025-12-31" required>
+                    </div>
+                    <div class="col-md-6 form-group time-picker">
+                        <label for="time">Время (с 9:00 до 18:00)</label>
+                        <input type="time" class="form-control" name="time" id="time" 
+                               min="09:00" max="18:00" step="1800" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Выбор услуги -->
+            <div class="form-group">
+                <label for="usluga" class="font-weight-bold">Выбор услуги</label>
+                <select class="custom-select" name="uslugaId" id="usluga" required>
+                    <option value="" disabled selected>— Выберите услугу —</option>
+                </select>
+                <small class="form-text text-muted">Доступные услуги загружаются автоматически</small>
+            </div>
+
+            <!-- Способ оплаты -->
+            <div class="form-group">
+                <label for="paymentType" class="font-weight-bold">Способ оплаты</label>
+                <select class="custom-select" name="paymentType" id="paymentType" required>
+                    <option value="cash">💵 Наличный расчет</option>
+                    <option value="card">💳 Безналичная оплата</option>
+                </select>
+            </div>
+
+            <!-- Сумма -->
+            <div class="form-group">
+                <label class="font-weight-bold">Сумма к оплате:</label>
+                <div id="total-amount" class="text-success">0 руб.</div>
+            </div>
+
+            <!-- Дополнительные пожелания -->
+            <div class="form-group">
+                <label for="wish">Дополнительные пожелания</label>
+                <textarea class="form-control" name="wish" id="wish" 
+                          placeholder="Укажите особые требования" 
+                          rows="3"
+                          maxlength="500"></textarea>
+            </div>
+
+            <!-- Кнопка отправки -->
+            <button type="submit" class="btn btn-primary btn-lg btn-block py-3">
+                Отправить заявку
+            </button>
+        </form>
+    </main>
+
+    <!-- Скрипты остаются без изменений -->
+    <script defer src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Оптимизированный JavaScript -->
+    <script>
+         document.getElementById('time').addEventListener('change', function() {
+        const minutes = new Date(`1970-01-01T${this.value}:00`).getMinutes();
+        if (minutes % 30 !== 0) {
+            this.setCustomValidity('Выберите время с интервалом 30 минут');
+            this.reportValidity();
+            this.value = '';
+        } else {
+            this.setCustomValidity('');
+        }
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+        // Кэширование DOM-элементов
+        const elements = {
+            backBtn: document.getElementById('back-button'),
+            form: document.getElementById('request-form'),
+            uslugaSelect: document.getElementById('usluga')
+        };
+
+        // Навигация
+        elements.backBtn.addEventListener('click', () => {
+            window.location.href = '/';
+        });
+
+        // Загрузка услуг с обработкой ошибок
+        const loadServices = async () => {
+            try {
+                const response = await fetch('/request/uslugi');
+                if (!response.ok) throw new Error('Ошибка загрузки');
+                
+                const services = await response.json();
+                elements.uslugaSelect.innerHTML = services.map(service => 
+                    `<option value="${service.id}">${service.name}</option>`
+                ).join('');
+                
+            } catch (error) {
+                console.error('Ошибка:', error);
+                elements.uslugaSelect.innerHTML = 
+                    `<option disabled>Сервис временно недоступен</option>`;
+            }
+        };
+
+        loadServices();
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+    const elements = {
+        backBtn: document.getElementById('back-button'),
+        form: document.getElementById('request-form'),
+        uslugaSelect: document.getElementById('usluga'),
+        totalAmount: document.getElementById('total-amount') // Новый элемент
+    };
+
+    let servicesData = {}; // Кэш услуг
+
+    // Загрузка услуг
+    const loadServices = async () => {
+        try {
+            const response = await fetch('/request/uslugi');
+            if (!response.ok) throw new Error('Ошибка загрузки');
+            
+            const services = await response.json();
+            servicesData = services.reduce((acc, service) => {
+                acc[service.id] = service;
+                return acc;
+            }, {});
+
+            // Заполнение select
+            elements.uslugaSelect.innerHTML = services.map(service => 
+                `<option value="${service.id}">${service.name} (${service.price} руб.)</option>`
+            ).join('');
+
+            // Обработчик изменения услуги
+            elements.uslugaSelect.addEventListener('change', updateTotal);
+
+        } catch (error) {
+            console.error('Ошибка:', error);
+            elements.uslugaSelect.innerHTML = 
+                `<option disabled>Сервис временно недоступен</option>`;
+        }
+    };
+
+    // Обновление суммы
+    const updateTotal = () => {
+        const selectedId = elements.uslugaSelect.value;
+        const service = servicesData[selectedId];
+        elements.totalAmount.textContent = service 
+            ? `${service.price} руб.` 
+            : '0 руб.';
+    };
+
+    loadServices();
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+        <!DOCTYPE html>
+        <html lang="ru">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Betta Bank</title>
+            <link rel="stylesheet" href="style.css">
+        </head>
+        <body>
+            <header>
+                <h1>Ɓeŧŧa - Ɓanꝃ</h1>
+                <nav>
+                    <ul>
+                        <li><a href="vclad.html">Вклады</a></li>
+                        <li><a href="credit_info.html">Кредиты</a></li>
+                        <li><a href="credit_card.html">Карты</a></li>
+                        <li><a href="invest.html">Инвестиции</a></li>
+                    </ul>
+                </nav>
+                <nav class="auth-buttons">
+                    <ul>
+                    <li><button type="button" class="btn btn-primary" onclick="window.location.href ='/auth.html#login'">Войти</button></li>
+                    <li><button type="button" class="btn btn-primary" onclick="window.location.href ='/auth.html#register'">Регистрация</button></li>
+                    </ul>
+                </nav>
+            </header>
+            <main>
+                <section class="featured">
+                    <h2>Рекомендуем</h2>
+                    <div class="product-container">
+                        </div>
+                </section>
+                <section class="categories">
+                    <h2>Категории</h2>
+                    <div class="category-container" id="гитары">
+                        <h3>Актуальные</h3>
+                        <div class="products-grid"></div>
+                    </div>
+
+                    <div class="category-container" id="бас-гитары">
+                        <h3>Новые продукты</h3>
+                        <div class="products-grid"></div>
+                    </div>
+
+                    <div class="category-container" id="ударные">
+                        <h3>Новый выгодный вклад со ставкой 24% годовых</h3>
+                        <div class="products-grid"></div>
+                    </div>
+                </section>
+            </main>
+            <footer>
+                <p>&copy; 2025 Betta Bank | Designed and development by Kristina Vin </p>
+            </footer>
+            <script src="script.js"></script>
+        </body>
+        </html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Betta Bank - современные финансовые решения. Вклады, кредиты, инвестиционные продукты и банковские карты">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <title>Betta Bank - Главная</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="https://www.finam.ru/Images/u/newsonline/scheduledNews/202012/80.jpg" as="image">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">Betta Bank</h1>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="vclad.html" class="nav-link">Вклады</a></li>
+                    <li><a href="credit_info.html" class="nav-link">Кредиты</a></li>
+                    <li><a href="credit_card.html" class="nav-link">Карты</a></li>
+                    <li><a href="invest.html" class="nav-link">Инвестиции</a></li>
+                </ul>
+            </nav>
+
+            <div class="auth-buttons">
+                <button id="themeToggle" class="auth-btn">
+                    <i class="bi bi-moon-stars"></i>
+                </button>
+                <button class="auth-btn" onclick="window.location.href='/auth.html#login'">Войти</button>
+                <button class="auth-btn primary" onclick="window.location.href='/auth.html#register'">Регистрация</button>
+                <button class="auth-btn admin" onclick="window.location.href='/admin-login.html#register'">Админ-панель</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="featured-section">
+            <h2 class="section-title">Рекомендуем</h2>
+            <div class="product-container" id="productContainer"></div>
+        </section>
+
+        <section class="news-section">
+            <h2 class="section-title">Новости</h2>
+            
+            <div class="news-grid">
+                <article class="news-card">
+                    <h3>Новый выгодный вклад 24%</h3>
+                    <p class="news-excerpt">Откройте вклад с повышенной процентной ставкой</p>
+                </article>
+                
+                <article class="news-card">
+                    <h3>Обновлённый личный кабинет</h3>
+                    <p class="news-excerpt">Новый удобный интерфейс онлайн-банкинга</p>
+                </article>
+            </div>
+            <div class="chat-container">
+                <button class="chat-toggle">
+                    <i class="bi bi-chat-dots-fill"></i>
+                </button>
+                
+                <div class="chat-window">
+                    <div class="chat-header">
+                        <h4>Техническая поддержка</h4>
+                        <button class="close-chat">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                    <div class="chat-messages"></div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Введите сообщение...">
+                        <button class="send-btn">
+                            <i class="bi bi-send-fill"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+
+    <footer class="footer">
+        <p>&copy; 2025 Betta Bank | Developed by Kristina Vin</p>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+
+function toggleTheme() {
+    body.classList.toggle('dark-theme');
+    const isDark = body.classList.contains('dark-theme');
+    themeToggle.innerHTML = isDark ? '<i class="bi bi-sun"></i>' : '<i class="bi bi-moon-stars"></i>';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+// Загрузка темы
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if(savedTheme === 'dark') {
+        body.classList.add('dark-theme');
+        themeToggle.innerHTML = '<i class="bi bi-sun"></i>';
+    }
+}
+loadTheme();
+
+themeToggle.addEventListener('click', toggleTheme);
+    </script>
+</body>
+</html>

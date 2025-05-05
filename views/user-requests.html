@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои заявки | Betta-Bank</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #f8f9fc;
+            --text-color: #5a5c69;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        
+        .request-card {
+            border-radius: 10px;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .request-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-new {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .status-inwork {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-done {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-cancelled {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .back-btn {
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            transform: translateX(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .table-responsive {
+                border: none;
+            }
+            
+            .table thead {
+                display: none;
+            }
+            
+            .table tr {
+                display: block;
+                margin-bottom: 1rem;
+                border-radius: 10px;
+                box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            }
+            
+            .table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                margin-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-4">
+        <!-- Шапка -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <button id="back-button" class="btn btn-light back-btn">
+                <i class="fas fa-arrow-left mr-2"></i> Назад
+            </button>
+            <h1 class="mb-0"><i class="fas fa-file-alt mr-2"></i>Мои заявки</h1>
+            <div class="d-flex align-items-center">
+                <div class="dropdown mr-3">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="filterDropdown" data-toggle="dropdown">
+                        <i class="fas fa-filter mr-2"></i>Фильтр
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item filter-item active" href="#" data-filter="all">Все заявки</a>
+                        <a class="dropdown-item filter-item" href="#" data-filter="Новая">Новые</a>
+                        <a class="dropdown-item filter-item" href="#" data-filter="в работе">В работе</a>
+                        <a class="dropdown-item filter-item" href="#" data-filter="выполнено">Выполненные</a>
+                        <a class="dropdown-item filter-item" href="#" data-filter="отменено">Отмененные</a>
+                    </div>
+                </div>
+                <button id="refresh-btn" class="btn btn-primary">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Уведомления -->
+        <div id="loading-indicator" class="alert alert-info d-flex align-items-center">
+            <div class="spinner-border spinner-border-sm mr-3" role="status"></div>
+            <span>Загрузка данных...</span>
+        </div>
+        
+        <div id="error-message" class="alert alert-danger d-none">
+            <i class="fas fa-exclamation-circle mr-2"></i>
+            <span id="error-text"></span>
+        </div>
+        
+        <!-- Таблица заявок -->
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th><i class="fas fa-calendar-alt mr-2"></i>Дата</th>
+                        <th><i class="fas fa-building mr-2"></i>Адрес</th>
+                        <th><i class="fas fa-clock mr-2"></i>Время</th>
+                        <th><i class="fas fa-cog mr-2"></i>Услуга</th>
+                        <th><i class="fas fa-ruble-sign mr-2"></i>Сумма</th>
+                        <th><i class="fas fa-info-circle mr-2"></i>Статус</th>
+                        <th><i class="fas fa-money-bill-wave mr-2"></i>Оплата</th>
+                        <th><i class="fas fa-comment mr-2"></i>Пожелания</th>
+                    </tr>
+                </thead>
+                <tbody id="requests-table-body">
+                    <!-- Данные будут загружены через JS -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Пустое состояние -->
+        <div id="empty-state" class="text-center py-5 d-none">
+            <i class="fas fa-inbox fa-4x mb-3 text-muted"></i>
+            <h4 class="text-muted">У вас пока нет заявок</h4>
+            <a href="request.html" class="btn btn-primary mt-3">
+                <i class="fas fa-plus mr-2"></i>Создать заявку
+            </a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="user-requests.js"></script>
+</body>
+</html>

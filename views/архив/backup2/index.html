@@ -1,0 +1,67 @@
+        <!DOCTYPE html>
+        <html lang="ru">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Музыкальный магазин</title>
+            <link rel="stylesheet" href="style.css">
+        </head>
+        <body>
+            <header>
+                <h1>Музыкальный магазин</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#гитары">Гитары</a></li>
+                        <li><a href="#бас-гитары">Бас-гитары</a></li>
+                        <li><a href="#ударные">Ударные</a></li>
+                        <li><a href="#клавиатуры">Клавиатуры</a></li>
+                        <li><a href="#аксессуары">Аксессуары</a></li>
+                        <li><a href="about.html">О компании</a></li>
+                    </ul>
+                </nav>
+                <nav class="auth-buttons">
+                    <ul>
+                    <li><button type="button" class="btn btn-primary" onclick="window.location.href = '/auth.html#login'">Войти</button></li>
+                    <li><button type="button" class="btn btn-primary" onclick="window.location.href = '/auth.html#register'">Регистрация</button></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <section class="featured">
+                    <h2>Рекомендуем</h2>
+                    <div class="product-container">
+                        </div>
+                </section>
+
+                <section class="categories">
+                    <h2>Категории</h2>
+                    <div class="category-container" id="гитары">
+                        <h3>6 струнные</h3>
+                        <div class="products-grid"></div>
+                    </div>
+
+                    <div class="category-container" id="бас-гитары">
+                        <h3>12 струнные</h3>
+                        <div class="products-grid"></div>
+                    </div>
+
+                    <div class="category-container" id="ударные">
+                        <h3>Акустическая гитара</h3>
+                        <div class="products-grid"></div>
+                    </div>
+
+                    <div class="category-container" id="клавиатуры">
+                        <h3>Электроакустическая гитара</h3>
+                        <div class="products-grid"></div>
+                    </div>
+                </section>
+            </main>
+
+            <footer>
+                <p>&copy; 2023 Музыкальный магазин</p>
+            </footer>
+
+            <script src="script.js"></script>
+        </body>
+        </html>
